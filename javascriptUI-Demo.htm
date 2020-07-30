@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Javascript UI Test</title>
+    <script type="text/javascript" src="javascriptUI.js"></script>
+    <link rel="stylesheet" type="text/css" href="demo.css">
+</head>
+<body>
+<span>Here is a place holder, if this is visible our JS failed to run.</span>
+</body>
+
+<script type="text/javascript">
+    /*****************************************************************
+     * 
+     * Application section
+     * 
+     **/
+    books = [{author: "E. Hemingway", title: "The Sun Also Rises"},
+             {author: "Dalton Trumbo", title: "Johnny Got His Gun"},
+             {author: "Peter Hamilton", title: "The Naked God"}];
+
+    var myApp = new UI();
+    myApp.add(
+        new VStack()
+        .style("grayborderBox")
+        .add(
+            new Span("Book List Example")
+            .fontSize("18pt")
+        )
+        .add(
+            new Span("by Derek Smith")
+            .fontSize("10pt")
+        )
+        .add(new HStack()
+            .add(new Span("By Title"))
+            .add(new Span(" & Author"))
+            .padding("5px")
+        )
+        .add(new HStack()
+                .padding("4px")
+                .add(new Span("Author: "))
+                .add(new Input("author"))
+                .add(new Span("Title:"))
+                .add(new Input("title"))
+                .add(new Button("Insert")
+                    .action( () => {
+                        books.push({author: Input.value("author"), title: Input.value("title")});
+                    })
+                )
+        )
+        .add(new List(books, (book, index) => {
+            return new HStack()
+            .padding("4px")
+            .add(
+                new Span(`${book.title} by ${book.author}`)
+                .backColor("#3333EE")
+                .foreColor("#FFFFEE")
+            )
+            .add(
+                new Button(`-`)
+                .action(
+                    () => {
+                        books.splice(index, 1);
+                    }
+                )
+            );
+        }))
+        .add(
+            new Span("Thanks for using the demo!")
+            .style("smallText")
+        )
+    );
+    myApp.show();
+
+</script>
+
+</html>

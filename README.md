@@ -8,7 +8,7 @@ Much like SwiftUI, I designed this small project to allow you to declare HTML ap
 
 Since I am not a native Javascript developer, I felt more comfortable declaring objects with the Class keyword, so you'll need to use 'new' to spin up an instance.
 
-```yaml
+```javascript
 
 let view = new UI();
 view.add(new Span("This is the span text");
@@ -17,7 +17,7 @@ view.add(new Span("This is the span text");
 
 Like SwiftUI, it seemed sensible to name the classes after the DOM element they match or their function, so for a vertical stack you would use VStack, and for buttons you would use Button, and so on.
 
-```yaml
+```javascript
 view.add(
     new VStack ()
         .add(new Button ("Top"))
@@ -27,7 +27,7 @@ view.add(
 
 Also like SwiftUI, simple tap or click events can be defined and can call out to other functions if needed.
 
-```yaml
+```javascript
 view.add(
   new Button("Click Me")
       .action(() => {
